@@ -1,0 +1,10 @@
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\bin\Release\AE1.exe.config
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\bin\Release\AE1.exe
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\bin\Release\AE1.pdb
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.csprojAssemblyReference.cache
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.Form1.resources
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.Properties.Resources.resources
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.csproj.GenerateResource.cache
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.csproj.CoreCompileInputs.cache
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.exe
+D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Release\AE1.pdb
