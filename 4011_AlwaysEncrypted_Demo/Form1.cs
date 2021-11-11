@@ -12,11 +12,20 @@ using System.Windows.Forms;
 
 namespace AE1
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        string user;
+        string role;
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        public MainForm(string user, string role)
+        {
+            InitializeComponent();
+            this.user = user;
+            this.role = role;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -157,6 +166,11 @@ namespace AE1
         private void buttonReload_Click(object sender, EventArgs e)
         {
             ClearTextBoxes();
+        }
+
+        private void MainFrom_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

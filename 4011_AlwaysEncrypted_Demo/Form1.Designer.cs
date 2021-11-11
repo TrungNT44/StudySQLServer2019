@@ -1,6 +1,6 @@
 ﻿namespace AE1
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -274,7 +274,7 @@
             this.buttonReload.UseVisualStyleBackColor = true;
             this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -301,8 +301,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxMssv);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Demo tính năng Always Encryted trong SQL Server 2019";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainFrom_Closed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aEDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aEDataSetBindingSource)).EndInit();

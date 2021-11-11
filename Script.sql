@@ -81,3 +81,38 @@ BEGIN
 END
 GO
 
+---
+drop table  dbo.Users
+go
+
+CREATE TABLE dbo.Users
+(
+	username NVARCHAR(100) PRIMARY KEY,
+  PASSWORD NVARCHAR(200) COLLATE Latin1_General_BIN2 
+    ENCRYPTED WITH 
+    (
+       ENCRYPTION_TYPE = DETERMINISTIC, 
+       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
+       COLUMN_ENCRYPTION_KEY = CEK_Auto1
+    ),
+	ROLE NVARCHAR(100)
+);
+GO
+
+drop procedure dbo.GetUserByUsername
+go 
+
+CREATE PROCEDURE dbo.GetUserByUsername
+  @Username NVARCHAR(100),
+  @Password NVARCHAR(200)
+AS
+BEGIN
+  SELECT *
+  FROM dbo.Users
+  WHERE UPPER(Username) = UPPER(@Username) and PASSWORD = @Password;
+END
+GO
+
+DECLARE @rvalue NVARCHAR(200) = 'admin'
+INSERT INTO  dbo.Users (username, PASSWORD, ROLE) VALUES ('admin', @rvalue,  'ADMIN')
+;

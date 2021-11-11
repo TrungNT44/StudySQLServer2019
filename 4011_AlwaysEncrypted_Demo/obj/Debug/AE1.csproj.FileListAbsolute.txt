@@ -17,3 +17,14 @@ D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.c
 D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.csproj.CoreCompileInputs.cache
 D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.exe
 D:\Freelancer\Job Data SQL Server 2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.pdb
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\bin\Debug\AE1.exe.config
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\bin\Debug\AE1.exe
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\bin\Debug\AE1.pdb
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.csprojAssemblyReference.cache
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.LoginForm.resources
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.Properties.Resources.resources
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.csproj.GenerateResource.cache
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.csproj.CoreCompileInputs.cache
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.exe
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.pdb
+D:\Freelancer\Job Data SQL Server 2019\Source\StudySQLServer2019\4011_AlwaysEncrypted_Demo\obj\Debug\AE1.MainForm.resources
