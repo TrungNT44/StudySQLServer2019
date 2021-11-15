@@ -16,6 +16,9 @@ namespace AE1
     {
         string user;
         string role;
+        SqlDataAdapter adapt;
+        //ID variable used in Updating and Deleting Record
+        string StudentCode = "";
         public MainForm()
         {
             InitializeComponent();
@@ -26,9 +29,45 @@ namespace AE1
             InitializeComponent();
             this.user = user;
             this.role = role;
+            var isAdmin = role == "ADMIN";
+            buttonAddNew.Visible = isAdmin;
+            buttonEdit.Visible = isAdmin;
+            buttonDelete.Visible = isAdmin;
+            buttonReload.Visible = isAdmin;
+            DisplayData();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //Display Data in DataGridView
+        private void DisplayData()
+        {
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["AE1.Properties.Settings.SQLServer2021Connection"].ToString();
+                con.Open();
+                DataTable dt = new DataTable();
+                adapt = new SqlDataAdapter("select StudentCode	as 'Mã SV', FullName as 'Họ tên', IDCardNo as 'CMT',	BirthDate as 'Ngày sinh',	Gender as 'Giới tính',	Mobile	as 'Số ĐT', Address as 'Địa chỉ',	Class as 'Lớp', Faculty as 'Khoa'  from dbo.StudentInfo", con);
+                adapt.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }
+        }
+
+        //dataGridView1 RowHeaderMouseClick Event
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            StudentCode = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            textBoxMssv.Text = StudentCode;
+            textBoxHoTen.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            textBoxCMT.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            textBoxNgaySinh.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            textboxGioiTinh.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            textBoxDienThoai.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+            textBoxDiaChi.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            textBoxLop.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+            textBoxKhoa.Text = dataGridView1.Rows[e.RowIndex].Cells[8].Value.ToString();
+        }
+
+        private void buttonAddStudent_Click(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection())
             {
@@ -37,23 +76,6 @@ namespace AE1
                 using (SqlCommand cmd = new SqlCommand("dbo.AddStudent", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    //SqlParameter studentCode = new SqlParameter("@StudentCode", SqlDbType.NVarChar, 32)
-                    //{
-                    //    Value = textBoxMssv.Text
-                    //};
-                    //SqlParameter fullName = new SqlParameter("@FullName", SqlDbType.NVarChar, 500)
-                    //{
-                    //    Value = textBoxHoTen.Text
-                    //};
-                    //SqlParameter IdCardNo = new SqlParameter("@IDCardNo", SqlDbType.Int)
-                    //{
-                    //    Value = Convert.ToInt32(textBoxCMT.Text)
-                    //};
-
-                    //cmd.Parameters.Add(studentCode);
-                    //cmd.Parameters.Add(fullName);
-                    //cmd.Parameters.Add(IdCardNo);
-
                     List<SqlParameter> sp = new List<SqlParameter>()
                         {
                             new SqlParameter() {ParameterName = "@StudentCode", SqlDbType = SqlDbType.NVarChar, Size = 32, Value= textBoxMssv.Text},
@@ -71,16 +93,14 @@ namespace AE1
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Sinh viên mới đã được thêm thành công");
-                    //textBoxMssv.Clear();
-                    //textBoxHoTen.Clear();
-                    //textBoxCMT.Clear();
+                    DisplayData();
                     ClearTextBoxes();
                 }
                 con.Close();
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonGetStudentInfo_Click(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection())
             {
@@ -158,11 +178,6 @@ namespace AE1
 
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonReload_Click(object sender, EventArgs e)
         {
             ClearTextBoxes();
@@ -171,6 +186,68 @@ namespace AE1
         private void MainFrom_Closed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (textBoxMssv.Text == "")
+            {
+                MessageBox.Show("Mã số sinh viên không được trống");
+                return;
+            }
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["AE1.Properties.Settings.SQLServer2021Connection"].ToString();
+                con.Open();
+                SqlCommand cmd = new SqlCommand("delete from dbo.StudentInfo where StudentCode=@StudentCode", con);
+                cmd.Parameters.AddWithValue("@StudentCode", StudentCode);
+                int result = cmd.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Xóa sinh viên thành công");
+                }
+                DisplayData();
+                ClearTextBoxes();
+                con.Close();
+            }
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (textBoxMssv.Text == "")
+            {
+                MessageBox.Show("Mã số sinh viên không được trống");
+                return;
+            }
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.ConnectionString = ConfigurationManager.ConnectionStrings["AE1.Properties.Settings.SQLServer2021Connection"].ToString();
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.UpdateStudent", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    List<SqlParameter> sp = new List<SqlParameter>()
+                        {
+                            new SqlParameter() {ParameterName = "@StudentCode", SqlDbType = SqlDbType.NVarChar, Size = 32, Value= textBoxMssv.Text},
+                            new SqlParameter() {ParameterName = "@FullName", SqlDbType = SqlDbType.NVarChar, Size = 500, Value = textBoxHoTen.Text},
+                            new SqlParameter() {ParameterName = "@IDCardNo", SqlDbType = SqlDbType.NVarChar,  Size = 30, Value = textBoxCMT.Text},
+                            new SqlParameter() {ParameterName = "@BirthDate", SqlDbType = SqlDbType.NVarChar, Size = 32, Value = textBoxNgaySinh.Text},
+                            new SqlParameter() {ParameterName = "@Gender", SqlDbType = SqlDbType.NVarChar, Size = 20, Value = textboxGioiTinh.Text},
+                            new SqlParameter() {ParameterName = "@Mobile", SqlDbType = SqlDbType.NVarChar,  Size = 30, Value = textBoxDienThoai.Text},
+                            new SqlParameter() {ParameterName = "@Address", SqlDbType = SqlDbType.NVarChar, Size = 1000, Value = textBoxDiaChi.Text},
+                            new SqlParameter() {ParameterName = "@Class", SqlDbType = SqlDbType.NVarChar, Size = 200, Value = textBoxLop.Text},
+                            new SqlParameter() {ParameterName = "@Faculty", SqlDbType = SqlDbType.NVarChar, Size = 200, Value = textBoxKhoa.Text}
+                        };
+                    if (sp != null)
+                        cmd.Parameters.AddRange(sp.ToArray());
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Sinh viên đã được cập nhật thành công");
+                    DisplayData();
+                    ClearTextBoxes();
+                }
+                con.Close();
+            }
         }
     }
 }
