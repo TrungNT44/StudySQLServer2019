@@ -59,25 +59,40 @@ CREATE PROCEDURE dbo.AddStudent
   @Mobile NVARCHAR(30),
   @Address NVARCHAR(1000),
   @Class NVARCHAR(200),
-  @Faculty NVARCHAR(200)
+  @Faculty NVARCHAR(200),
+  @Password NVARCHAR(200)
 
 AS
 BEGIN
   INSERT dbo.StudentInfo(StudentCode, FullName, IDCardNo, BirthDate, Gender, Mobile, Address, Class, Faculty) 
   SELECT @StudentCode, @FullName, @IDCardNo, @BirthDate, @Gender, @Mobile, @Address, @Class, @Faculty;
+  INSERT INTO  dbo.Users (username, PASSWORD) VALUES (@StudentCode, @Password);
+  insert into dbo.UserRole (username, ROLE, Faculty) VALUES (@StudentCode, 'SINH VIEN', @Faculty);
 END
+GO
 GO
 
 drop procedure dbo.GetStudentByCode
 GO
 
+
 CREATE PROCEDURE dbo.GetStudentByCode
-  @StudentCode NVARCHAR(32)
+  @StudentCode NVARCHAR(32) = null,
+  @Username NVARCHAR(100),
+  @Userrole NVARCHAR(100)  = null,
+  @Faculty NVARCHAR(200)  = null
 AS
 BEGIN
-  SELECT *
-  FROM dbo.StudentInfo
-  WHERE StudentCode = @StudentCode;
+--SET @Userrole = (SELECT ROLE FROM dbo.UserRole WHERE username = @Username)
+SELECT @Userrole=[ROLE] , @Faculty =[Faculty] FROM dbo.UserRole WHERE upper(username) = upper(@Username)
+  select StudentCode	as 'Mã SV', FullName as 'Họ tên', IDCardNo as 'CMT',	BirthDate as 'Ngày sinh',	
+  Gender as 'Giới tính',	Mobile	as 'Số ĐT', Address as 'Địa chỉ',	Class as 'Lớp', Faculty as 'Khoa' 
+  from dbo.StudentInfo 
+  where case when upper(@Userrole) = 'ADMIN' then 1
+  when upper(@Userrole) = 'GIANG VIEN' and Faculty = @Faculty then 1
+  when upper(@Userrole) = 'SINH VIEN' and StudentCode = @Username then 1
+  else 0 end = 1
+  and StudentCode = isnull(@StudentCode,StudentCode)
 END
 GO
 
@@ -125,8 +140,7 @@ CREATE TABLE dbo.Users
        ENCRYPTION_TYPE = DETERMINISTIC, 
        ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
        COLUMN_ENCRYPTION_KEY = CEK_Auto1
-    ),
-	ROLE NVARCHAR(100)
+    )
 );
 GO
 
@@ -138,14 +152,22 @@ CREATE PROCEDURE dbo.GetUserByUsername
   @Password NVARCHAR(200)
 AS
 BEGIN
-  SELECT *
-  FROM dbo.Users
-  WHERE UPPER(Username) = UPPER(@Username) and PASSWORD = @Password;
+  SELECT a.username, b.ROLE, b.Faculty
+  FROM dbo.Users a
+  left join dbo.UserRole b
+  on a.username = b.username
+  WHERE UPPER(a.Username) = UPPER(@Username) and PASSWORD = @Password;
 END
 GO
 
 DECLARE @rvalue NVARCHAR(200) = 'admin'
-INSERT INTO  dbo.Users (username, PASSWORD, ROLE) VALUES ('admin', @rvalue,  'ADMIN')
+INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('admin', @rvalue)
+;
+DECLARE @rvalue1 NVARCHAR(200) = 'giangvien1'
+INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('giangvien1', @rvalue1)
+;
+DECLARE @rvalue2 NVARCHAR(200) = 'giangvien2'
+INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('giangvien2', @rvalue2)
 ;
 
 
@@ -159,31 +181,5 @@ GO
 
 insert into dbo.UserRole (username, ROLE, Faculty)
 values ('admin', 'ADMIN', null),
-('namdv', 'GIANG VIEN', 'CNTT'),
-('duyendt', 'GIANG VIEN', 'CNTT'),
-('ducnv', 'GIANG VIEN', 'DIEN TU'),
-('huyhq', 'GIANG VIEN', 'KINH TE'),
-('trungnt', 'SINH VIEN', 'CNTT'),
-('kienvt', 'SINH VIEN', 'CNTT'),
-('maiptp', 'SINH VIEN', 'KINH TE')
-
-drop PROCEDURE dbo.test_select_sv
-
-CREATE PROCEDURE dbo.test_select_sv
-  @StudentCode NVARCHAR(32),
-  @Username NVARCHAR(100),
-  @Userrole NVARCHAR(100),
-  @Faculty NVARCHAR(200)
-
-AS
-BEGIN
---SET @Userrole = (SELECT ROLE FROM dbo.UserRole WHERE username = @Username)
-SELECT @Userrole=[ROLE] , @Faculty =[Faculty] FROM dbo.UserRole WHERE username = @Username
-  select * from dbo.StudentInfo 
-  where case when @Userrole = 'ADMIN' then 1
-  when @Userrole = 'GIANG VIEN' and Faculty = @Faculty then 1
-  when @Userrole = 'SINH VIEN' and StudentCode = @StudentCode then 1
-  else 0 end = 1
-  and StudentCode = isnull(@StudentCode,StudentCode)
-END
-GO
+('giangvien1', 'GIANG VIEN', 'CNTT'),
+('giangvien2', 'GIANG VIEN', 'KINH TE')

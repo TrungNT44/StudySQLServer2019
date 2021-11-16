@@ -72,5 +72,10 @@ namespace AE1
             if (dg == DialogResult.Yes)
                 Application.Exit();
         }
+
+        private void onLoginFrom_Closed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

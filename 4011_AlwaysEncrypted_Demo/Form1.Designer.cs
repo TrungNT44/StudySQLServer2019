@@ -36,7 +36,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxHoTen = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSearchStudent = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxCMT = new System.Windows.Forms.TextBox();
@@ -57,6 +57,8 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.queriesTableAdapter1 = new AE1.AEDataSetTableAdapters.QueriesTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnSignOut = new System.Windows.Forms.Button();
+            this.labelUser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.aEDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aEDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -100,7 +102,6 @@
             this.label1.Size = new System.Drawing.Size(73, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Họ tên";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBoxHoTen
             // 
@@ -119,18 +120,17 @@
             this.label2.Size = new System.Drawing.Size(94, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Mã số SV";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // button2
+            // btnSearchStudent
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(446, 13);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(214, 32);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Tra cứu theo mã số SV";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonGetStudentInfo_Click);
+            this.btnSearchStudent.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchStudent.Location = new System.Drawing.Point(446, 13);
+            this.btnSearchStudent.Name = "btnSearchStudent";
+            this.btnSearchStudent.Size = new System.Drawing.Size(214, 32);
+            this.btnSearchStudent.TabIndex = 5;
+            this.btnSearchStudent.Text = "Tra cứu theo mã số SV";
+            this.btnSearchStudent.UseVisualStyleBackColor = true;
+            this.btnSearchStudent.Click += new System.EventHandler(this.buttonGetStudentInfo_Click);
             // 
             // label3
             // 
@@ -309,13 +309,35 @@
             this.dataGridView1.Size = new System.Drawing.Size(545, 358);
             this.dataGridView1.TabIndex = 27;
             this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
-
+            // 
+            // btnSignOut
+            // 
+            this.btnSignOut.Font = new System.Drawing.Font("Segoe UI", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignOut.Location = new System.Drawing.Point(877, 25);
+            this.btnSignOut.Name = "btnSignOut";
+            this.btnSignOut.Size = new System.Drawing.Size(114, 32);
+            this.btnSignOut.TabIndex = 28;
+            this.btnSignOut.Text = "Đăng xuất";
+            this.btnSignOut.UseVisualStyleBackColor = true;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
+            // 
+            // labelUser
+            // 
+            this.labelUser.AutoSize = true;
+            this.labelUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUser.Location = new System.Drawing.Point(873, 1);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(49, 21);
+            this.labelUser.TabIndex = 29;
+            this.labelUser.Text = "User: ";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 520);
+            this.Controls.Add(this.labelUser);
+            this.Controls.Add(this.btnSignOut);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
@@ -335,7 +357,7 @@
             this.Controls.Add(this.textBoxCMT);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSearchStudent);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxHoTen);
             this.Controls.Add(this.label1);
@@ -361,7 +383,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxHoTen;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSearchStudent;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxCMT;
@@ -382,6 +404,8 @@
         private System.Windows.Forms.Button buttonDelete;
         private AEDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnSignOut;
+        private System.Windows.Forms.Label labelUser;
     }
 }
 
