@@ -47,6 +47,27 @@ CREATE TABLE dbo.StudentInfo
 );
 GO
 
+CREATE TABLE dbo.Users
+(
+	username NVARCHAR(100) PRIMARY KEY,
+  PASSWORD NVARCHAR(200) COLLATE Latin1_General_BIN2 
+    ENCRYPTED WITH 
+    (
+       ENCRYPTION_TYPE = DETERMINISTIC, 
+       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
+       COLUMN_ENCRYPTION_KEY = CEK_Auto1
+    )
+);
+GO
+
+CREATE TABLE dbo.UserRole
+(
+	username NVARCHAR(100) PRIMARY KEY,
+	ROLE NVARCHAR(100),
+	Faculty NVARCHAR(200)
+);
+GO
+
 drop procedure dbo.AddStudent
 GO
 
@@ -127,25 +148,6 @@ where StudentCode = @StudentCode
 END
 GO
 
----
-drop table  dbo.Users
-go
-
-CREATE TABLE dbo.Users
-(
-	username NVARCHAR(100) PRIMARY KEY,
-  PASSWORD NVARCHAR(200) COLLATE Latin1_General_BIN2 
-    ENCRYPTED WITH 
-    (
-       ENCRYPTION_TYPE = DETERMINISTIC, 
-       ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256', 
-       COLUMN_ENCRYPTION_KEY = CEK_Auto1
-    )
-);
-GO
-
-drop procedure dbo.GetUserByUsername
-go 
 
 CREATE PROCEDURE dbo.GetUserByUsername
   @Username NVARCHAR(100),
@@ -169,15 +171,6 @@ INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('giangvien1', @rvalue1)
 DECLARE @rvalue2 NVARCHAR(200) = 'giangvien2'
 INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('giangvien2', @rvalue2)
 ;
-
-
-CREATE TABLE dbo.UserRole
-(
-	username NVARCHAR(100) PRIMARY KEY,
-	ROLE NVARCHAR(100),
-	Faculty NVARCHAR(200)
-);
-GO
 
 insert into dbo.UserRole (username, ROLE, Faculty)
 values ('admin', 'ADMIN', null),
