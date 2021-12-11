@@ -47,11 +47,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textboxGioiTinh = new System.Windows.Forms.TextBox();
             this.textBoxDienThoai = new System.Windows.Forms.TextBox();
             this.textBoxDiaChi = new System.Windows.Forms.TextBox();
-            this.textBoxLop = new System.Windows.Forms.TextBox();
-            this.textBoxKhoa = new System.Windows.Forms.TextBox();
             this.buttonReload = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -59,6 +56,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.labelUser = new System.Windows.Forms.Label();
+            this.cbboxGioitinh = new System.Windows.Forms.ComboBox();
+            this.cbboxKhoa = new System.Windows.Forms.ComboBox();
+            this.cbboxLop = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.aEDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aEDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -212,7 +212,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(27, 351);
+            this.label9.Location = new System.Drawing.Point(29, 392);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 25);
             this.label9.TabIndex = 17;
@@ -222,19 +222,11 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(29, 392);
+            this.label10.Location = new System.Drawing.Point(29, 349);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 25);
             this.label10.TabIndex = 18;
             this.label10.Text = "Khoa";
-            // 
-            // textboxGioiTinh
-            // 
-            this.textboxGioiTinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textboxGioiTinh.Location = new System.Drawing.Point(140, 210);
-            this.textboxGioiTinh.Name = "textboxGioiTinh";
-            this.textboxGioiTinh.Size = new System.Drawing.Size(267, 29);
-            this.textboxGioiTinh.TabIndex = 19;
             // 
             // textBoxDienThoai
             // 
@@ -251,22 +243,6 @@
             this.textBoxDiaChi.Name = "textBoxDiaChi";
             this.textBoxDiaChi.Size = new System.Drawing.Size(267, 29);
             this.textBoxDiaChi.TabIndex = 21;
-            // 
-            // textBoxLop
-            // 
-            this.textBoxLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBoxLop.Location = new System.Drawing.Point(140, 351);
-            this.textBoxLop.Name = "textBoxLop";
-            this.textBoxLop.Size = new System.Drawing.Size(267, 29);
-            this.textBoxLop.TabIndex = 22;
-            // 
-            // textBoxKhoa
-            // 
-            this.textBoxKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.textBoxKhoa.Location = new System.Drawing.Point(140, 392);
-            this.textBoxKhoa.Name = "textBoxKhoa";
-            this.textBoxKhoa.Size = new System.Drawing.Size(267, 29);
-            this.textBoxKhoa.TabIndex = 23;
             // 
             // buttonReload
             // 
@@ -331,22 +307,56 @@
             this.labelUser.TabIndex = 29;
             this.labelUser.Text = "User: ";
             // 
+            // cbboxGioitinh
+            // 
+            this.cbboxGioitinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cbboxGioitinh.FormattingEnabled = true;
+            this.cbboxGioitinh.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.cbboxGioitinh.Location = new System.Drawing.Point(140, 210);
+            this.cbboxGioitinh.Name = "cbboxGioitinh";
+            this.cbboxGioitinh.Size = new System.Drawing.Size(66, 28);
+            this.cbboxGioitinh.TabIndex = 30;
+            cbboxGioitinh.SelectedIndex = 1;
+            this.cbboxGioitinh.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // cbboxKhoa
+            // 
+            this.cbboxKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cbboxKhoa.FormattingEnabled = true;
+            this.cbboxKhoa.Location = new System.Drawing.Point(140, 349);
+            this.cbboxKhoa.Name = "cbboxKhoa";
+            this.cbboxKhoa.Size = new System.Drawing.Size(212, 28);
+            this.cbboxKhoa.TabIndex = 31;
+            this.cbboxKhoa.SelectedIndexChanged += new System.EventHandler(this.cbboxKhoa_SelectedIndexChanged);
+            // 
+            // cbboxLop
+            // 
+            this.cbboxLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cbboxLop.FormattingEnabled = true;
+            this.cbboxLop.Location = new System.Drawing.Point(140, 392);
+            this.cbboxLop.Name = "cbboxLop";
+            this.cbboxLop.Size = new System.Drawing.Size(212, 28);
+            this.cbboxLop.TabIndex = 32;
+            this.cbboxLop.SelectedIndexChanged += new System.EventHandler(this.cbboxLop_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1003, 520);
+            this.Controls.Add(this.cbboxLop);
+            this.Controls.Add(this.cbboxKhoa);
+            this.Controls.Add(this.cbboxGioitinh);
             this.Controls.Add(this.labelUser);
             this.Controls.Add(this.btnSignOut);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonReload);
-            this.Controls.Add(this.textBoxKhoa);
-            this.Controls.Add(this.textBoxLop);
             this.Controls.Add(this.textBoxDiaChi);
             this.Controls.Add(this.textBoxDienThoai);
-            this.Controls.Add(this.textboxGioiTinh);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -394,11 +404,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textboxGioiTinh;
         private System.Windows.Forms.TextBox textBoxDienThoai;
         private System.Windows.Forms.TextBox textBoxDiaChi;
-        private System.Windows.Forms.TextBox textBoxLop;
-        private System.Windows.Forms.TextBox textBoxKhoa;
         private System.Windows.Forms.Button buttonReload;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Button buttonDelete;
@@ -406,6 +413,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSignOut;
         private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.ComboBox cbboxGioitinh;
+        private System.Windows.Forms.ComboBox cbboxKhoa;
+        private System.Windows.Forms.ComboBox cbboxLop;
     }
 }
 

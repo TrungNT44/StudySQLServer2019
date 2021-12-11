@@ -91,7 +91,6 @@ BEGIN
   insert into dbo.UserRole (username, ROLE, Faculty) VALUES (@StudentCode, 'SINH VIEN', @Faculty);
 END
 GO
-GO
 
 drop procedure dbo.GetStudentByCode
 GO
@@ -172,7 +171,32 @@ DECLARE @rvalue2 NVARCHAR(200) = 'giangvien2'
 INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('giangvien2', @rvalue2)
 ;
 
+INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('admin', 'admin')
+;
+INSERT INTO  dbo.Users (username, PASSWORD) VALUES ('giangvien1', 'giangvien1')
+;
+
 insert into dbo.UserRole (username, ROLE, Faculty)
 values ('admin', 'ADMIN', null),
 ('giangvien1', 'GIANG VIEN', 'CNTT'),
 ('giangvien2', 'GIANG VIEN', 'KINH TE')
+
+CREATE TABLE dbo.ClassInfo
+(
+	Faculty NVARCHAR(200),
+	ClassName NVARCHAR(200)
+);
+GO
+
+insert into dbo.ClassInfo (Faculty, ClassName)
+values ('CNTT', 'ATTT'),
+('CNTT', N'Kỹ thuật phần mềm'),
+('CNTT', 'AI'),
+(N'Kinh tế', N'Kế toán'),
+(N'Kinh tế', N'Tài chính'),
+(N'Kinh tế', N'Ngân hàng'),
+(N'Ngoại ngữ', N'Tiếng Anh'),
+(N'Ngoại ngữ', N'Tiếng Đức'),
+(N'Ngoại ngữ', N'Tiếng Nhật')
+;
+GO

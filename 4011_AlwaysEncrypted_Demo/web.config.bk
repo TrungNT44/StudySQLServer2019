@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <connectionStrings configProtectionProvider="DataProtectionConfigurationProvider">
+        <EncryptedData>
+            <CipherData>
+                <CipherValue>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAfXtEjJlrdky/6LIxilKQtwQAAAACAAAAAAAQZgAAAAEAACAAAABjtRixOKJ2fqOfYZ0+6aDl6odZ+sQOI9CFCj6ewtqxZgAAAAAOgAAAAAIAACAAAABugIalf1PXx/kVljJt3NFP80xozyBMZcoVh2KvHoi+2DAAAACxZwd0SMQTC4kHY9iuT6vi9QaPm7WlA7UUTLsw44C0JCn1tbrqiU+aAzfloDKyb3tAAAAAQWDhBCWMZyjCSX0xmdBnI44lN3E8afJ00jdk5S2UvotILizffcumutw6a7aAJGzjX7SXXNCu0IE0rYSqt3iGZw==</CipherValue>
+            </CipherData>
+        </EncryptedData>
+    </connectionStrings>
+</configuration>
